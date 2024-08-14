@@ -1,0 +1,24 @@
+﻿@model Movie
+
+@{
+    ViewBag.Title = "Delete Movie";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="alert alert-warning">
+    <h4 class="alert-heading">Are you sure?</h4>
+    <p>Do you really want to delete the movie titled "<strong>@Model.Name</strong>"? This action cannot be undone.</p>
+</div>
+
+<form asp-action="Delete" method="post">
+    @Html.AntiForgeryToken()
+    <input type="hidden" name="MovieId" value="@Model.MovieId" />
+    <input type="hidden" name="Name" value="@Model.Name" />
+    <input type="hidden" name="Rating" value="@Model.Rating" />
+    <input type="hidden" name="Year" value="@Model.Year" />
+    <div class="form-group">
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <a asp-controller="Home" asp-action="Index" class="btn btn-secondary">Cancel</a>
+    </div>
+</form>
